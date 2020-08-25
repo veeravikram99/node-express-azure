@@ -8,20 +8,14 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-  demands:
-  - npm
 
-stages:
-- stage:Buildnode
-  jobs:
-   - job:node
-  steps:
-   - task: NodeTool@0
-     inputs:
-     versionSpec: '10.x'
-     displayName: 'Install Node.js'
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 
-- stage: npm
+- script: |
     npm install
     npm run build
   displayName: 'npm install and build'
